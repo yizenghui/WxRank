@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"encoding/base64"
 	"fmt"
 
 	"github.com/yizenghui/WxRank/orm"
@@ -32,10 +33,13 @@ func Insert(url string) (article wechat.Article, err error) {
 }
 
 //Hot ..
-func Hot() (articles []orm.Article, err error) {
+func Hot(limit, offset int) (articles []orm.Article, err error) {
 
 	var a orm.Article
-	articles = a.Hot()
+	articles = a.Hot(limit, offset)
+	for key, article := range articles {
+		articles[key].Cover = "http://localhost:1323/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
+	}
 
 	return
 }
@@ -45,7 +49,9 @@ func New() (articles []orm.Article, err error) {
 
 	var a orm.Article
 	articles = a.New()
-
+	for key, article := range articles {
+		articles[key].Cover = "http://localhost:1323/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
+	}
 	return
 }
 
@@ -53,25 +59,25 @@ func New() (articles []orm.Article, err error) {
 func Post(url string) (err error) {
 	var post orm.Post
 	post.GetPostByURL(url)
-	if post.State == 0 {
-		var a orm.Article
-		article, err := wechat.Find(url)
-		if err == nil {
-			post.ArticleURL = article.URL
-			post.State = 1
-			post.Save()
-			a.GetArticleByURL(article.URL)
-			a.AppID = article.AppID
-			a.AppName = article.AppName
-			a.Title = article.Title
-			a.Intro = article.Intro
-			a.Cover = article.Cover
-			a.Author = article.Author
-			a.PubAt = article.PubAt
-			a.Save()
-			fmt.Println(a)
-		}
+	// if post.State == 0 {
+	var a orm.Article
+	article, err := wechat.Find(url)
+	if err == nil {
+		post.ArticleURL = article.URL
+		post.State = 1
+		post.Save()
+		a.GetArticleByURL(article.URL)
+		a.AppID = article.AppID
+		a.AppName = article.AppName
+		a.Title = article.Title
+		a.Intro = article.Intro
+		a.Cover = article.Cover
+		a.Author = article.Author
+		a.PubAt = article.PubAt
+		a.Save()
+		fmt.Println(a)
 	}
+	// }
 	return
 }
 

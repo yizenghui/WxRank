@@ -34,8 +34,8 @@ func (article *Article) Save() {
 }
 
 // Hot 热门
-func (article *Article) Hot() (articles []Article) {
-	DB().Find(&articles)
+func (article *Article) Hot(limit, offset int) (articles []Article) {
+	DB().Offset(offset).Limit(limit).Find(&articles)
 	return
 }
 

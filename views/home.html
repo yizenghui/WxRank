@@ -21,120 +21,125 @@
 <link rel="apple-touch-icon" href="https://v4.bootcss.com/apple-touch-icon.png">
 <link rel="icon" href="https://v4.bootcss.com/favicon.ico">
 
-<!-- Bootstrap core CSS -->
+<style>
+  .bd-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
+    z-index: 1000;
+    max-height: calc(100vh - 4rem);
+}
+.bd-toc {
+  position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
 
+    -ms-flex-order: 2;
+    order: 2;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: .875rem;
+}
+</style>
+<!-- Bootstrap core CSS -->
   </head>
   
   <body>
     
-    
-<div class="container"> <!--start container  -->
 
-  <form action="/post" method="get">
-      <div class="form-group">
-        <label for="url">Email address</label>
-        <input type="url" name="url" class="form-control" id="url" aria-describedby="urlHelp" placeholder="Enter URL">
-        <small id="urlHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+    <nav class="navbar  navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Read follow</a>
+      <span class="navbar-text">
+        <a href="/share">小圈子那点事 -- 微信文章分享</a>
+      </span>
+    </nav>
+
+  
+
+    <div class="container-fluid justify-content-md-center">
+      <div class="row justify-content-center">
+        
+      
+
+        <main class=" col-md-8 col-sm-9" role="main">
+        
+  {{ range .Articles }}
+  
+  <div class="card mt-3">
+    <div class="card-body">
+      <h4 class="card-title row">                
+          <a class="col-12 text-truncate" href="{{.URL}}" target="_blank" rel="nofollow" >
+            {{ .Title }}              
+          </a>  
+      </h4>
+
+      <div class="row">
+          <div class=" mx-auto col-md-3 order-md-2">
+              <img class="card-img-top" src="{{ .Cover }}" alt="Card image cap">
+          </div>
+          <div class="col-md-9 order-md-1  text-md-left pr-md-5">
+
+              <p class="card-text">
+                <small class="text-muted">{{.AppName}}</small>
+                <small class="text-muted">{{.PubAt}}</small>
+                <!-- <small class="text-muted">4321鲜花</small> -->
+                  <!-- <small class="text-muted">10鸡蛋</small> -->
+                  <!-- <small class="text-muted">{{ .UpdatedAt.Format "01-02 15:04" }}</small>         -->
+              </p>
+              <p class="card-text ">{{.Intro}}</p>
+            <!-- <div class="row">
+              <p class="card-text col-12 text-truncate">{{.Intro}}</p>
+            </div> -->
+
+            <p class="card-text">
+                <small class="text-muted">4321人次送鲜花</small>
+
+                <small class="text-muted">10人次扔鸡蛋</small>
+
+
+                <small class="text-muted">送鲜花</small>
+
+                <small class="text-muted">扔鸡蛋</small>
+
+                
+                  <!-- <small class="text-muted">{{ .UpdatedAt.Format "01-02 15:04" }}</small>         -->
+              </p>
+          </div>
       </div>
-      
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+  </div>
 
-  
-  <div class="card mb-3">
-      <div class="card-body">
-        <h4 class="card-title">  龙符  <small class="text-muted">梦入神机</small>  	</h4>
-  
-        <p class="card-text">
-            <small class="text-muted">4321热度</small>
-            <small class="text-muted">10评论</small>
-            <small class="text-muted">200关注</small>
-            <small class="text-muted">Last updated 3 mins ago</small>        
-        </p>
-      
-        <p class="card-text">
-          苍茫大地，未来变革，混乱之中，龙蛇并起，谁是真龙，谁又是蟒蛇？或是天地众生，皆可成龙？ 朝廷，江湖门派，世外仙道，千年世家，蛮族，魔神，妖族，上古巫道，千百势力，相互纠缠，因缘际会。
-        </p>
-        <h6 class="card-subtitle mb-2 text-muted">
-            <!-- <a href="#" class="badge badge-light">梦入神机作品</a> -->
-            <a href="#" class="badge badge-danger">玄幻奇幻</a>
-            <a href="#" class="badge badge-warning">东方玄幻</a>
-            <a href="#" class="badge badge-light">梦入神机</a>
-            <a href="#" class="badge badge-light">爽文</a>
-            <a href="#" class="badge badge-light">热血</a>
-        </h6>
+  {{ end }}
+
+  <br>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+     
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+        </main>
+
+
       </div>
     </div>
 
-  
 
 
-  <div class="card-columns">
-    
-      <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Card title1</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
-      </div>
-      <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Card title2</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
-      </div>
-      <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Card title3</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
-      </div>
-      <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Card title4</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
-      </div>
-    
-        <div class="card">
-          
-          <img class="card-img-top" src="http://mmbiz.qpic.cn/mmbiz_jpg/8xT0JYxK1SRXftJ27LnV6y1EmolWnMe5Y3fP9doQiaQr9x7bAbiaam6icpYgaV4w6Hic1vx0Cr2ezia76F7F671Krkw/0?wx_fmt=jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">一分钱坐地铁，速来。</h4>
-            <p class="card-text">会冷魔术的 京东金融</p>
-            <p class="card-text">又要骗我去北京？</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        
-            <div class="card">
-              
-              <img class="card-img-top" src="http://mmbiz.qpic.cn/mmbiz_jpg/8xT0JYxK1SRXftJ27LnV6y1EmolWnMe5Y3fP9doQiaQr9x7bAbiaam6icpYgaV4w6Hic1vx0Cr2ezia76F7F671Krkw/0?wx_fmt=jpeg" alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">一分钱坐地铁，速来。</h4>
-                <p class="card-text">会冷魔术的 京东金融</p>
-                <p class="card-text">又要骗我去北京？</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-
-  </div>
 
 </div> <!--end container  -->
 
-
+<footer class="container">
+    <!-- <p class="text-center">备案号XXXXXXXX.</p> -->
+</footer>
 
 
   </body>

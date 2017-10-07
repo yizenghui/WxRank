@@ -87,6 +87,34 @@ func New(c echo.Context) error {
 	return c.JSON(http.StatusOK, articles)
 }
 
+//Hate 不喜欢
+func Hate(c echo.Context) error {
+
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	article, err := repository.Hate(id)
+
+	if err != nil {
+
+	}
+
+	return c.JSON(http.StatusOK, article)
+}
+
+//Like 喜欢
+func Like(c echo.Context) error {
+
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	article, err := repository.Like(id)
+
+	if err != nil {
+
+	}
+
+	return c.JSON(http.StatusOK, article)
+}
+
 //Post 报料接口
 func Post(c echo.Context) error {
 	url := c.QueryParam("url")
@@ -122,6 +150,9 @@ func main() {
 
 	e.GET("/new", New)
 	e.POST("/new", New)
+
+	e.GET("/hate/:id", Hate)
+	e.GET("/like/:id", Like)
 
 	e.GET("/hot", Hot)
 

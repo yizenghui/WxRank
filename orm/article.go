@@ -12,7 +12,10 @@ type Article struct {
 	Cover     string
 	Intro     string
 	PubAt     string
-	URL       string `gorm:"type:varchar(100);unique_index"`
+	Like      int64   `gorm:"type:default(0)"`
+	Hate      int64   `gorm:"type:default(0)"`
+	URL       string  `gorm:"type:varchar(100);unique_index"`
+	Rank      float64 `sql:"index"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt *time.Time `sql:"index"`
@@ -35,12 +38,12 @@ func (article *Article) Save() {
 
 // Hot 热门
 func (article *Article) Hot(limit, offset int) (articles []Article) {
-	DB().Offset(offset).Limit(limit).Find(&articles)
+	DB().Offset(offset).Limit(limit).Order("rank DESC").Find(&articles)
 	return
 }
 
 // New 最新
 func (article *Article) New() (articles []Article) {
-	DB().Find(&articles)
+	DB().Order("id DESC").Find(&articles)
 	return
 }

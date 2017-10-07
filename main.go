@@ -32,7 +32,7 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 
 //Home 主页
 func Home(c echo.Context) error {
-	articles, err := repository.New()
+	articles, err := repository.New(10, 0)
 
 	if err != nil {
 
@@ -77,8 +77,18 @@ func Hot(c echo.Context) error {
 
 //New 最新数据
 func New(c echo.Context) error {
+	limit, _ := strconv.Atoi(c.QueryParam("limit"))
+	offset, _ := strconv.Atoi(c.QueryParam("offset"))
 
-	articles, err := repository.New()
+	if limit <= 0 || limit > 100 {
+		limit = 10
+	}
+	// limit = 10
+	if offset < 0 || offset > 500 {
+		offset = 0
+	}
+
+	articles, err := repository.New(limit, offset)
 
 	if err != nil {
 

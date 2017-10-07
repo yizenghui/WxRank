@@ -43,7 +43,7 @@ func (article *Article) Hot(limit, offset int) (articles []Article) {
 }
 
 // New 最新
-func (article *Article) New() (articles []Article) {
-	DB().Order("id DESC").Find(&articles)
+func (article *Article) New(limit, offset int) (articles []Article) {
+	DB().Offset(offset).Limit(limit).Order("id DESC").Find(&articles)
 	return
 }

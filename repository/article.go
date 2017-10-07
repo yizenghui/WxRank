@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"time"
 
 	"github.com/yizenghui/WxRank/orm"
 	"github.com/yizenghui/sda/wechat"
@@ -40,6 +41,13 @@ func Hot(limit, offset int) (articles []orm.Article, err error) {
 	var a orm.Article
 	articles = a.Hot(limit, offset)
 	for key, article := range articles {
+
+		i64, _ := strconv.ParseInt(article.PubAt, 10, 64)
+
+		tm := time.Unix(i64, 0)
+
+		articles[key].PubAt = tm.Format("2006-01-02 15:04:05")
+
 		articles[key].Cover = "http://localhost:1323/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
 	}
 
@@ -47,11 +55,16 @@ func Hot(limit, offset int) (articles []orm.Article, err error) {
 }
 
 //New ..
-func New() (articles []orm.Article, err error) {
+func New(limit, offset int) (articles []orm.Article, err error) {
 
 	var a orm.Article
-	articles = a.New()
+	articles = a.New(limit, offset)
 	for key, article := range articles {
+		i64, _ := strconv.ParseInt(article.PubAt, 10, 64)
+
+		tm := time.Unix(i64, 0)
+
+		articles[key].PubAt = tm.Format("2006-01-02 15:04:05")
 		articles[key].Cover = "http://localhost:1323/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
 	}
 	return

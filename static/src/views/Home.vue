@@ -9,8 +9,6 @@
 
 <div>
 
-
-
       <div class="card mt-3" v-for="article in articles" :key="article.id">
         <div class="card-body">
 
@@ -20,8 +18,8 @@
 
           <div class="row">
               <div class=" mx-auto col-md-3 order-md-2">
-                  <img class="card-img-top"  :src="article.Cover" alt="Card image cap">
-                  <!-- <img class="card-img-top"  v-lazy="article.Cover" alt="Card image cap"> -->
+                  <!-- <img class="card-img-top"  :src="article.Cover" alt="Card image cap"> -->
+                  <img class="card-img-top"  v-lazy="article.Cover" alt="Card image cap">
               </div>
               <div class="col-md-9 order-md-1  text-md-left pr-md-5">
 

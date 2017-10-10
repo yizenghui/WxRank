@@ -125,13 +125,27 @@ func Like(c echo.Context) error {
 	return c.JSON(http.StatusOK, article)
 }
 
-//Post 报料接口
-func Post(c echo.Context) error {
+//Fetch get 报料接口
+func Fetch(c echo.Context) error {
 	url := c.QueryParam("url")
 	fmt.Println(url)
 	if url != "" {
 		repository.Post(url)
 		return c.JSON(http.StatusOK, "Post")
+	}
+	return c.JSON(http.StatusOK, "0")
+}
+
+//Post 报料接口
+func Post(c echo.Context) error {
+	url := c.FormValue("url")
+	// fmt.Println("url", url)
+	if url != "" {
+		err := repository.Post(url)
+		if err != nil {
+			return c.JSON(http.StatusOK, "0")
+		}
+		return c.JSON(http.StatusOK, "1")
 	}
 	return c.JSON(http.StatusOK, "0")
 }
@@ -154,9 +168,11 @@ func main() {
 	// e.Use(middleware.Recover())
 
 	// Route => handler
-	e.GET("/", Home)
+	// e.GET("/", Home)
+	e.File("/", "static/dist/index.html")
 
-	e.GET("/post", Post)
+	e.GET("/fetch", Fetch)
+	e.POST("/post", Post)
 
 	e.GET("/new", New)
 	e.POST("/new", New)
@@ -170,10 +186,12 @@ func main() {
 
 	e.Any("/wx_callback", echoWxCallbackHandler)
 
+	e.Static("static", "static/dist/static")
+
 	// e.Static("/", "src")
 	// Start server
 	// e.Logger.Fatal(e.Start(":8888"))
-	e.Logger.Fatal(e.Start(":8888"))
+	e.Logger.Fatal(e.Start(":8004"))
 	// e.Logger.Fatal(e.StartAutoTLS(":443"))
 
 }

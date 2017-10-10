@@ -9,7 +9,12 @@
 
 <div>
 
-
+<br>
+<div class="alert alert-secondary" role="alert">
+  <!-- 喜欢送花讨厌扔鸡蛋，您的喜好将影响文章排名，如果您有好的文章也欢迎与我们分享！ -->
+  最新收录微信文章链接，欢迎您分享好文！
+  <router-link class="alert-link" to="/post">分享文章</router-link>
+</div>
 
       <div class="card mt-3" v-for="article in articles" :key="article.id">
         <div class="card-body">
@@ -20,8 +25,8 @@
 
           <div class="row">
               <div class=" mx-auto col-md-3 order-md-2">
-                  <img class="card-img-top"  :src="article.Cover" alt="Card image cap">
-                  <!-- <img class="card-img-top"  v-lazy="article.Cover" alt="Card image cap"> -->
+                  <!-- <img class="card-img-top"  :src="article.Cover" alt="Card image cap"> -->
+                  <img class="card-img-top"  v-lazy="article.Cover" alt="Card image cap">
               </div>
               <div class="col-md-9 order-md-1  text-md-left pr-md-5">
 

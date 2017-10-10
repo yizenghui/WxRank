@@ -1,6 +1,10 @@
 <template>
-<div class="container">
-  <br>
+
+    <div class="container">
+	<div class="row justify-content-center">
+
+
+<div class="col-md-8 col-sm-9">  <br>
 <form @submit.prevent="submit">
   <div class="form-group">
     <label for="exampleInputEmail1">微信文章地址</label>
@@ -9,6 +13,8 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
+</div>
 </div>
 </template>
 
@@ -25,7 +31,13 @@ import news from '../api/news.js';
     methods: {
        submit: function(event) {
             
-              news.post(this.url,function(err,data){});
+              news.post(this.url,function(err,data){
+                if(data == "0"){
+                  alert("收录失败")
+                }else{
+                  alert("收录成功")
+                }
+              });
 
            
         }

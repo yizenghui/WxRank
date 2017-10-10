@@ -3,7 +3,6 @@ package repository
 import (
 	"encoding/base64"
 	"errors"
-	"fmt"
 	"strconv"
 	"time"
 
@@ -48,7 +47,7 @@ func Hot(limit, offset int) (articles []orm.Article, err error) {
 
 		articles[key].PubAt = tm.Format("2006-01-02 15:04:05")
 
-		articles[key].Cover = "http://localhost:1323/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
+		articles[key].Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
 	}
 
 	return
@@ -65,7 +64,7 @@ func New(limit, offset int) (articles []orm.Article, err error) {
 		tm := time.Unix(i64, 0)
 
 		articles[key].PubAt = tm.Format("2006-01-02 15:04:05")
-		articles[key].Cover = "http://localhost:1323/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
+		articles[key].Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
 	}
 	return
 }
@@ -98,7 +97,7 @@ func Like(id int) (a orm.Article, err error) {
 		a.Save()
 	}
 
-	a.Cover = "http://localhost:1323/" + base64.URLEncoding.EncodeToString([]byte(a.Cover))
+	a.Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(a.Cover))
 
 	return
 }
@@ -129,7 +128,7 @@ func Hate(id int) (a orm.Article, err error) {
 		a.Save()
 	}
 
-	a.Cover = "http://localhost:1323/" + base64.URLEncoding.EncodeToString([]byte(a.Cover))
+	a.Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(a.Cover))
 
 	return
 }
@@ -142,6 +141,11 @@ func Post(url string) (err error) {
 	var a orm.Article
 	article, err := wechat.Find(url)
 	if err == nil {
+
+		if article.URL == "" {
+			return errors.New("不支持该链接！")
+		}
+
 		post.ArticleURL = article.URL
 		post.State = 1
 		post.Save()
@@ -159,7 +163,7 @@ func Post(url string) (err error) {
 		// }
 		a.PubAt = article.PubAt
 		a.Save()
-		fmt.Println(a)
+		// fmt.Println(a)
 	}
 	// }
 	return

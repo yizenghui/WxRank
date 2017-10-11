@@ -5,7 +5,7 @@
 	<div class="row justify-content-center">
 
 
-<div class="col-md-8 col-sm-9">
+<div class="col-md-9">
 
 <div>
 
@@ -68,6 +68,12 @@
 </div>
 </div>
 
+
+<div class="col-md-3">
+  <br>
+  <!--广告位-->
+
+</div>
 
   </div>
 

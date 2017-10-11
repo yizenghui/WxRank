@@ -5,7 +5,7 @@
 	<div class="row justify-content-center">
 
 
-<div class="col-md-8 col-sm-9">
+<div class="col-md-9">
 
 <div>
 
@@ -61,6 +61,11 @@
 </div>
 </div>
 
+<div class="col-md-3">
+  <br>
+  <!--以后放东西-->
+
+</div>
 
   </div>
 

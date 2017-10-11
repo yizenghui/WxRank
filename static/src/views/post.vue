@@ -4,15 +4,33 @@
 	<div class="row justify-content-center">
 
 
-<div class="col-md-8 col-sm-9">  <br>
+<div class="col-md-9">  <br>
+
 <form @submit.prevent="submit">
+  <h3>手动提交</h3><br>
   <div class="form-group">
     <label for="exampleInputEmail1">微信文章地址</label>
-    <input  v-model="url" type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter URL">
-    <small id="emailHelp" class="form-text text-muted">如果您想要与小伙伴们分享美文，请粘贴微信文章地址.</small>
+    <input  v-model="url" type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请粘贴微信文章链接地址">
+    <small id="emailHelp" class="form-text text-muted">请粘贴微信文章地址，我们系统将会进行验证和收录.</small>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">提交</button>
+   <br> <br>
 </form>
+
+</div>
+
+<div class="col-md-3">
+  <br>
+    <h3>机器人小灰灰</h3>
+  <p></p>
+  <br>
+<div class="card" >
+  <div class="card-body">
+    <h4 class="card-title">机器人小灰灰</h4>
+    <img src="../assets/xiaohuihuiwx.jpg" alt="小灰灰微信" class="card-img">
+    <p class="card-text">如果您有更多的文章要分享，可以添加微信好友分享文章，由小灰灰(非AI莫调戏)代发！</p>
+  </div>
+</div>
 </div>
 </div>
 </div>

@@ -18,7 +18,7 @@
 	<div class="row justify-content-center">
 
 
-<div class="col-md-8 col-sm-9">
+<div class="col-md-12">
 
 <ul class="nav nav-tabs">
   <li class="nav-item">

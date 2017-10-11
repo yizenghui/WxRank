@@ -33,7 +33,7 @@
                     <small class="text-muted">{{article.AppName}}</small>
                     <small class="text-muted">{{article.Author}}</small>
                     <small class="text-muted"><timeago :since="article.PubAt" class="text-muted" locale="zh-CN"></timeago></small>
-                    <small class="text-muted">收录于<timeago :since="article.CreatedAt" class="text-muted" locale="zh-CN"></timeago></small>
+                    <!-- <small class="text-muted">收录于<timeago :since="article.CreatedAt" class="text-muted" locale="zh-CN"></timeago></small> -->
                     <!-- <small class="text-muted">{{article.PubAt}}</small> -->
                     
                   </p>

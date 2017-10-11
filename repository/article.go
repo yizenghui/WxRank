@@ -27,7 +27,7 @@ func update(url string) (article wechat.Article, err error) {
 	return
 }
 
-// Find wechat.Article
+// Insert wechat.Article
 func Insert(url string) (article wechat.Article, err error) {
 
 	article, err = wechat.Find(url)
@@ -40,13 +40,6 @@ func Hot(limit, offset int) (articles []orm.Article, err error) {
 	var a orm.Article
 	articles = a.Hot(limit, offset)
 	for key, article := range articles {
-
-		i64, _ := strconv.ParseInt(article.PubAt, 10, 64)
-
-		tm := time.Unix(i64, 0)
-
-		articles[key].PubAt = tm.Format("2006-01-02 15:04:05")
-
 		articles[key].Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
 	}
 
@@ -59,11 +52,6 @@ func New(limit, offset int) (articles []orm.Article, err error) {
 	var a orm.Article
 	articles = a.New(limit, offset)
 	for key, article := range articles {
-		i64, _ := strconv.ParseInt(article.PubAt, 10, 64)
-
-		tm := time.Unix(i64, 0)
-
-		articles[key].PubAt = tm.Format("2006-01-02 15:04:05")
 		articles[key].Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
 	}
 	return
@@ -87,13 +75,7 @@ func Like(id int) (a orm.Article, err error) {
 	}
 
 	if a.ID != 0 {
-		//
-		// a.PubAt = "1506646834"
-		i64, err := strconv.ParseInt(a.PubAt, 10, 64)
-		if err != nil {
-			return a, err
-		}
-		a.Rank = Rank(int(a.Like), int(a.Hate), i64)
+		a.Rank = Rank(int(a.Like), int(a.Hate), a.PubAt.Unix())
 		a.Save()
 	}
 
@@ -120,11 +102,7 @@ func Hate(id int) (a orm.Article, err error) {
 	}
 
 	if a.ID != 0 {
-		i64, err := strconv.ParseInt(a.PubAt, 10, 64)
-		if err != nil {
-			return a, err
-		}
-		a.Rank = Rank(int(a.Like), int(a.Hate), i64)
+		a.Rank = Rank(int(a.Like), int(a.Hate), a.PubAt.Unix())
 		a.Save()
 	}
 
@@ -157,11 +135,12 @@ func Post(url string) (err error) {
 		a.Cover = article.Cover
 		a.Author = article.Author
 
-		// i64, err := strconv.ParseInt(article.PubAt, 10, 64)
-		// if err != nil {
-		// 	return a, err
-		// }
-		a.PubAt = article.PubAt
+		i64, err := strconv.ParseInt(article.PubAt, 10, 64)
+		if err != nil {
+			// fmt.Println(err)
+			return errors.New("时间转化失败")
+		}
+		a.PubAt = time.Unix(i64, 0)
 		a.Save()
 		// fmt.Println(a)
 	}
@@ -169,7 +148,7 @@ func Post(url string) (err error) {
 	return
 }
 
-// Find wechat.Article
+// Remove wechat.Article
 func Remove(url string) (article wechat.Article, err error) {
 
 	article, err = wechat.Find(url)

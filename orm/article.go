@@ -11,7 +11,7 @@ type Article struct {
 	AppID     string
 	Cover     string
 	Intro     string
-	PubAt     string
+	PubAt     time.Time
 	Like      int64   `gorm:"type:default(0)"`
 	Hate      int64   `gorm:"type:default(0)"`
 	URL       string  `gorm:"type:varchar(100);unique_index"`

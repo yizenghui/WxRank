@@ -22,10 +22,10 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-     <router-link class="nav-item nav-link"  to="/">微信热文</router-link>
+     <router-link class="nav-item nav-link"  to="/">热门</router-link>
   </li>
   <li class="nav-item">
-    <router-link class="nav-item nav-link"  to="/new">最新收录</router-link>
+    <router-link class="nav-item nav-link"  to="/new">最新</router-link>
   </li>
   <!-- <li class="nav-item">
     <router-link class="nav-item nav-link" to="/post">提交</router-link>

@@ -11,8 +11,7 @@
 
 <br>
 <div class="alert alert-secondary" role="alert">
-  <!-- 喜欢送花讨厌扔鸡蛋，您的喜好将影响文章排名，如果您有好的文章也欢迎与我们分享！ -->
-  最新收录微信文章链接，欢迎您分享好文！
+  最新收录文章链接，欢迎您分享好文！
   <router-link class="alert-link" to="/post">分享文章</router-link>
 </div>
 
@@ -34,6 +33,7 @@
                     <small class="text-muted">{{article.AppName}}</small>
                     <small class="text-muted">{{article.Author}}</small>
                     <small class="text-muted"><timeago :since="article.PubAt" class="text-muted" locale="zh-CN"></timeago></small>
+                    <!-- <small class="text-muted">收录于<timeago :since="article.CreatedAt" class="text-muted" locale="zh-CN"></timeago></small> -->
                     <!-- <small class="text-muted">{{article.PubAt}}</small> -->
                     
                   </p>
@@ -49,12 +49,12 @@
                       ({{article.Like}})
                       
                     </small>
-                      <small class="text-muted">
+                      <!-- <small class="text-muted">
 
                       <a v-on:click.once="hate(article)">鸡蛋</a>
                         
                         ({{article.Hate}})
-                        </small>
+                        </small> -->
                   </p>
 
               </div>

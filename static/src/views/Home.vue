@@ -7,19 +7,26 @@
 
 <div class="col-md-9">
 
+
+<!-- <br>
+<div class="alert alert-secondary" role="alert">
+  只提供信息跳转服务,文章观点仅代表来源公众号所属者,不代本平台立场
+  <router-link class="alert-link" to="/post">分享文章</router-link>
+</div> -->
+
 <div>
 
       <div class="card mt-3" v-for="article in articles" :key="article.id">
         <div class="card-body">
 
           <h4 class="card-title">
-             <a  v-bind:href="[article.URL]"  target="_blank" >{{article.Title}} </a>  
+             <a  v-bind:href="[article.URL]"  target="_blank" >{{article.Title}}</a>  
           </h4>
 
           <div class="row">
               <div class=" mx-auto col-md-3 order-md-2">
                   <!-- <img class="card-img-top"  :src="article.Cover" alt="Card image cap"> -->
-                  <img class="card-img-top"  v-lazy="article.Cover" alt="Card image cap">
+                  <img class="card-img-top"  v-lazy="article.Cover" >
               </div>
               <div class="col-md-9 order-md-1  text-md-left pr-md-5">
 
@@ -27,7 +34,6 @@
                     <small class="text-muted">{{article.AppName}}</small>
                     <small class="text-muted">{{article.Author}}</small>
                     <small class="text-muted"><timeago :since="article.PubAt" class="text-muted" locale="zh-CN"></timeago></small>
-                    <!-- <small class="text-muted">{{article.PubAt}}</small> -->
                     
                   </p>
                 

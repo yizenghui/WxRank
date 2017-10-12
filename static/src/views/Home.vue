@@ -35,19 +35,11 @@
                   <p class="card-text">{{article.Intro}}</p>
                   <p class="card-text">
                     <small class="text-muted">
-
-                    <a v-on:click.once="like(article)">鲜花</a>
-
-
-                      ({{article.Like}})
-                      
+                      <a v-on:click.once="like(article)">({{article.Like}})喜欢</a>
                     </small>
-                      <small class="text-muted">
-
-                      <a v-on:click.once="hate(article)">鸡蛋</a>
-                        
-                        ({{article.Hate}})
-                        </small>
+                    <small class="text-muted">
+                      <a v-on:click.once="hate(article)">({{article.Hate}})不喜欢</a>
+                    </small>
                   </p>
 
               </div>

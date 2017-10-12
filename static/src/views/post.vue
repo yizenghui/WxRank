@@ -4,7 +4,23 @@
 	<div class="row justify-content-center">
 
 
-<div class="col-md-9">  <br>
+
+<div class=" mx-auto col-md-3 order-md-2">
+  <br>
+    <h3>通过微信号分享</h3>
+  <p></p>
+  <br>
+<div class="card" >
+  <div class="card-body">
+    <h4 class="card-title">小灰灰(机器人)</h4>
+    <img src="../assets/xiaohuihuiwx.jpg" alt="小灰灰微信" class="card-img">
+    <p class="card-text">如果您有更多的文章要分享，可以添加我们的微信，把要分享文章发送给我们！</p>
+  </div>
+</div>
+</div>
+
+
+<div class="col-md-9 order-md-1  text-md-left pr-md-5">  <br>
 
 <form @submit.prevent="submit">
   <h3>手动提交</h3><br>
@@ -19,19 +35,7 @@
 
 </div>
 
-<div class="col-md-3">
-  <br>
-    <h3>机器人小灰灰</h3>
-  <p></p>
-  <br>
-<div class="card" >
-  <div class="card-body">
-    <h4 class="card-title">机器人小灰灰</h4>
-    <img src="../assets/xiaohuihuiwx.jpg" alt="小灰灰微信" class="card-img">
-    <p class="card-text">如果您有更多的文章要分享，可以添加微信好友分享文章，由小灰灰(非AI莫调戏)代发！</p>
-  </div>
-</div>
-</div>
+
 </div>
 </div>
 </template>

@@ -42,7 +42,8 @@ func Hot(limit, offset int) (articles []orm.Article, err error) {
 	articles = a.Hot(limit, offset)
 	for key, article := range articles {
 		articles[key].Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
-		articles[key].URL = strings.Replace(article.URL, `http://`, "https://", -1)
+		// articles[key].URL = strings.Replace(article.URL, `http://`, "https://", -1)
+		articles[key].URL = strings.Replace(article.URL, `#rd`, "&scene=27#wechat_redirect", 1)
 
 	}
 

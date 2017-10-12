@@ -188,6 +188,10 @@ func main() {
 
 	e.Static("static", "static/dist/static")
 
+	// 微信js安全域名验证
+	e.GET("/MP_verify_q4wWNqE4xUaPr81X.txt", func(c echo.Context) error {
+		return c.String(http.StatusOK, "q4wWNqE4xUaPr81X")
+	})
 	// e.Static("/", "src")
 	// Start server
 	// e.Logger.Fatal(e.Start(":8888"))

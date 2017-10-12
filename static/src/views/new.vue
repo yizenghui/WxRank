@@ -90,7 +90,7 @@ export default {
     data () {
       return {
         articles: [],
-        distance: 100,
+        distance: 200,
         page:0,
       }
     },
@@ -117,13 +117,13 @@ export default {
 
         infiniteHandler: function ($state) {
 
-          if (this.articles.length > 20) {
+          if (this.articles.length > 500) {
             $state.complete();
-            console.log("dont...");
+            // console.log("dont...");
           } else {
 
             //  setTimeout(function () {
-              console.log("dododododo...");
+              // console.log("dododododo...");
 
               var api = '/new?limit=5&offset='+this.page*5;
               var site = this

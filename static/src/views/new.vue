@@ -14,7 +14,7 @@
         <div class="card-body">
 
           <h4 class="card-title">
-             <a  v-bind:href="[article.URL]"  target="_blank">{{article.Title}}</a>  
+             <a  v-bind:href="[article.URL]" >{{article.Title}}</a>  
           </h4>
 
           <div class="row">

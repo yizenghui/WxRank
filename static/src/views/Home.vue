@@ -20,7 +20,7 @@
         <div class="card-body">
 
           <h4 class="card-title">
-             <a  v-bind:href="[article.URL]"  target="_blank" >{{article.Title}}</a>  
+             <a  v-bind:href="[article.URL]" v-on:click="cliLink(article)" >{{article.Title}}</a>  
           </h4>
 
           <div class="row">
@@ -98,9 +98,17 @@ export default {
       // news.getNew(api,function(err,data){
       //       site.articles = data
       // })
+      this.articles = JSON.parse(window.localStorage.getItem("articles"))||[]
     },
     methods: {
 
+
+
+        cliLink:function(article){
+          console.log(article)
+          alert(article.ID)
+          return false
+        },
 
         like:function(article){
           news.like(article.ID,function(err,data){
@@ -142,6 +150,12 @@ export default {
 
     },
 
+
+    watch:{
+      articles:function(){
+        localStorage.setItem("articles",JSON.stringify(this.articles))
+      }
+    }
 }
 </script>
 

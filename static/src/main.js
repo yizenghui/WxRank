@@ -121,6 +121,27 @@ Vue.use(VueLazyload)
 
 
 
+// router.afterEach(function () {
+//     alert("after");
+//     });
+
+    router.beforeEach((to, from, next) => {
+
+        var __to = localStorage.getItem("__to")||''
+        // to 和 from 都是 路由信息对象
+        if(to.path != from.path && __to !=to.path ){
+          localStorage.removeItem("hot_articles")
+          localStorage.removeItem("hot_page")
+          localStorage.removeItem("new_articles")
+          localStorage.removeItem("new_page")
+        //   console.log("clear cache")
+        }
+        
+        localStorage.setItem("__to",to.path)
+        // console.log(to.path, from.path)
+        next()
+      })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

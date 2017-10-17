@@ -26,7 +26,9 @@
           <div class="row">
               <div class=" mx-auto col-md-3 order-md-2">
                   <!-- <img class="card-img-top"  :src="article.Cover" alt="Card image cap"> -->
-                  <img class="card-img-top"  v-lazy="article.Cover" >
+                  <a  v-bind:href="[article.URL]" v-on:click="cliLink(article)" >
+                    <img class="card-img-top"  v-lazy="article.Cover" >
+                  </a>  
               </div>
               <div class="col-md-9 order-md-1  text-md-left pr-md-5">
 
@@ -98,15 +100,14 @@ export default {
       // news.getNew(api,function(err,data){
       //       site.articles = data
       // })
-      this.articles = JSON.parse(window.localStorage.getItem("articles"))||[]
+      this.articles = JSON.parse(window.localStorage.getItem("hot_articles"))||[]
+      this.page = parseInt(window.localStorage.getItem("hot_page")) || 0
     },
     methods: {
 
-
-
         cliLink:function(article){
           console.log(article)
-          alert(article.ID)
+          // alert(article.ID)
           return false
         },
 
@@ -153,9 +154,10 @@ export default {
 
     watch:{
       articles:function(){
-        localStorage.setItem("articles",JSON.stringify(this.articles))
+        localStorage.setItem("hot_articles",JSON.stringify(this.articles))
+        localStorage.setItem("hot_page",this.page)
+      },
       }
-    }
 }
 </script>
 

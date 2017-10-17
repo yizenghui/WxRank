@@ -2,8 +2,8 @@
 import axios from 'axios'
 
 
-axios.defaults.baseURL = 'http://localhost:8004/';
-// axios.defaults.baseURL = '/';
+// axios.defaults.baseURL = 'http://localhost:8004/';
+axios.defaults.baseURL = '/';
 
 export default {
   getNew(data, callback){

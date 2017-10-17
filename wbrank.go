@@ -97,6 +97,13 @@ func New(c echo.Context) error {
 	return c.JSON(http.StatusOK, articles)
 }
 
+// JsSDK wx jssdk sign
+func JsSDK(c echo.Context) error {
+	js, _ := repository.GetSign("wb.readfollow.com/")
+
+	return c.JSON(http.StatusOK, js)
+}
+
 //Hate 不喜欢
 func Hate(c echo.Context) error {
 
@@ -181,12 +188,15 @@ func main() {
 	e.GET("/like/:id", Like)
 
 	e.GET("/hot", Hot)
+	e.GET("/jssdk", JsSDK)
 
 	e.File("/favicon.ico", "images/favicon.ico")
 
 	e.Any("/wx_callback", echoWxCallbackHandler)
 
 	e.Static("static", "static/dist/static")
+
+	e.Static("file", "file")
 
 	// 微信js安全域名验证
 	e.GET("/MP_verify_q4wWNqE4xUaPr81X.txt", func(c echo.Context) error {

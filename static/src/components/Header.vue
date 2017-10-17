@@ -21,6 +21,10 @@
 <div class="col-md-12">
 
 <ul class="nav nav-tabs">
+  
+  <!-- <li class="nav-item">
+         <img src="../assets/wxsharelogo.jpg" alt="小灰灰微信" class="card-img">
+  </li> -->
   <li class="nav-item">
      <router-link class="nav-item nav-link"  to="/">热门</router-link>
   </li>

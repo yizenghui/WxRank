@@ -42,8 +42,19 @@ func Hot(limit, offset int) (articles []orm.Article, err error) {
 	articles = a.Hot(limit, offset)
 	for key, article := range articles {
 		articles[key].Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
-		// articles[key].URL = strings.Replace(article.URL, `http://`, "https://", -1)
+		article.URL = strings.Replace(article.URL, `http://`, `https://`, -1)
 		articles[key].URL = strings.Replace(article.URL, `#rd`, "&scene=27#wechat_redirect", 1)
+
+		article.Title = strings.Replace(article.Title, `\x26quot;`, `"`, -1)
+		article.Title = strings.Replace(article.Title, `\x26amp;`, `&`, -1)
+		article.Title = strings.Replace(article.Title, `\x0a`, `
+			`, -1)
+		articles[key].Title = article.Title
+
+		article.Intro = strings.Replace(article.Intro, `\x0a`, "\n", -1)
+		article.Intro = strings.Replace(article.Intro, `\x26quot;`, `"`, -1)
+		article.Intro = strings.Replace(article.Intro, `\x26amp;`, `&`, -1)
+		articles[key].Intro = article.Intro
 
 	}
 
@@ -57,8 +68,18 @@ func New(limit, offset int) (articles []orm.Article, err error) {
 	articles = a.New(limit, offset)
 	for key, article := range articles {
 		articles[key].Cover = "http://pic3.readfollow.com/" + base64.URLEncoding.EncodeToString([]byte(article.Cover))
-		// articles[key].URL = strings.Replace(article.URL, `http://`, "https://", -1)
+		article.URL = strings.Replace(article.URL, `http://`, "https://", -1)
 		articles[key].URL = strings.Replace(article.URL, `#rd`, "&scene=27#wechat_redirect", 1)
+
+		article.Title = strings.Replace(article.Title, `\x26quot;`, `"`, -1)
+		article.Title = strings.Replace(article.Title, `\x26amp;`, `&`, -1)
+		article.Title = strings.Replace(article.Title, `\x0a`, `\n`, -1)
+		articles[key].Title = article.Title
+
+		article.Intro = strings.Replace(article.Intro, `\x0a`, "\n", -1)
+		article.Intro = strings.Replace(article.Intro, `\x26quot;`, `"`, -1)
+		article.Intro = strings.Replace(article.Intro, `\x26amp;`, `&`, -1)
+		articles[key].Intro = article.Intro
 		//
 	}
 	return
